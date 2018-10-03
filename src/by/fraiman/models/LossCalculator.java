@@ -1,12 +1,12 @@
 package by.fraiman.models;
 
 public class LossCalculator {
-    public static double calculate(double curWeight, double desWeight, double lossPerWeek, double curDailyNeeds) {
-        double dailyNeeds = 0;
+    public static double calculate(CalcDetails calcDetails, double curDailyNeeds) {
+        double dailyNeeds;
 
-        double difference = curWeight - desWeight;
+        double difference = calcDetails.getWeight() - calcDetails.getdWeight();
 
-        double dailyLoss = lossPerWeek / 7;
+        double dailyLoss = calcDetails.getLossPerWeek() / 7;
         double dietLength = difference / dailyLoss;
 
         double diffInCal = difference * 7700;

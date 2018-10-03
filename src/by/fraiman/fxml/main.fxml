@@ -113,12 +113,12 @@
                   <Font name="System Italic" size="29.0" />
                </font>
             </Text>
-            <TextField fx:id="not" layoutX="314.0" layoutY="9.0" prefHeight="48.0" prefWidth="158.0" promptText="0.0">
+            <TextField fx:id="not" editable="false" layoutX="314.0" layoutY="9.0" prefHeight="48.0" prefWidth="158.0" promptText="0.0">
                <font>
                   <Font size="22.0" />
                </font>
             </TextField>
-            <TextField fx:id="loss" layoutX="314.0" layoutY="69.0" prefHeight="48.0" prefWidth="158.0" promptText="0.0">
+            <TextField fx:id="loss" editable="false" layoutX="314.0" layoutY="69.0" prefHeight="48.0" prefWidth="158.0" promptText="0.0">
                <font>
                   <Font size="22.0" />
                </font>

@@ -10,13 +10,8 @@ public class CalcDetails {
     private ActivityLevel active;
     private Gender gender;
 
-    public Double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
+    private Double dWeight;
+    private Double lossPerWeek;
 
     @Override
     public String toString() {
@@ -26,7 +21,17 @@ public class CalcDetails {
                 ", age=" + age +
                 ", active=" + active +
                 ", gender=" + gender +
+                ", dWeight=" + dWeight +
+                ", lossPerWeek=" + lossPerWeek +
                 '}';
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
     }
 
     public Double getWeight() {
@@ -59,5 +64,21 @@ public class CalcDetails {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Double getdWeight() {
+        return dWeight;
+    }
+
+    public void setdWeight(Double dWeight) {
+        this.dWeight = dWeight;
+    }
+
+    public Double getLossPerWeek() {
+        return lossPerWeek;
+    }
+
+    public void setLossPerWeek(Double lossPerWeek) {
+        this.lossPerWeek = lossPerWeek;
     }
 }
