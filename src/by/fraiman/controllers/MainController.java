@@ -56,17 +56,20 @@ public class MainController {
         activityChoiceBox.setValue(activityChoiceBox.getItems().get(0));
 
         calculateBtn.setOnAction(event -> {
-            if(check()) {
-                CalcDetails calcDetails = read();
+            if (check()) {
+                CalcDetails calcDetails = null;
+                try {
+                    calcDetails = read();
+
+                    if (calcDetails.getWeight() == calcDetails.getdWeight())
+                        System.exit(0);
+
+                } catch (Exception e) {
+                    System.exit(0);
+                }
                 double BMR = BMRCalculator.getBMR(calcDetails);
                 not.setText(String.valueOf(BMR));
                 loss.setText(String.valueOf(LossCalculator.calculate(calcDetails, BMR)));
-            }
-        });
-
-        weightField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[\\d.]*")) {
-                weightField.setText(newValue.replaceAll("[^\\d.]", ""));
             }
         });
 
@@ -77,8 +80,8 @@ public class MainController {
         });
 
         heightField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[\\d.]*")) {
-                heightField.setText(newValue.replaceAll("[^\\d.]", ""));
+            if (!newValue.matches("[\\d.-]*")) {
+                heightField.setText(newValue.replaceAll("[^\\d.-]", ""));
             }
         });
 
@@ -95,7 +98,7 @@ public class MainController {
         });
     }
 
-    private CalcDetails read() {
+    private CalcDetails read() throws Exception {
         CalcDetails calcDetails = new CalcDetails();
 
         calcDetails.setActive(ActivityLevel.getActivity(activityChoiceBox.getValue()));
@@ -107,6 +110,12 @@ public class MainController {
         calcDetails.setdWeight(Double.parseDouble(desiredWeightField.getCharacters().toString()));
         calcDetails.setLossPerWeek(Double.parseDouble(lossField.getCharacters().toString()));
 
+        if (calcDetails.getdWeight() == 0 ||
+                calcDetails.getAge() == 0 ||
+                calcDetails.getWeight() == 0 ||
+                calcDetails.getHeight() == 0 ||
+                calcDetails.getLossPerWeek() == 0)
+            throw new Exception(new RuntimeException());
         return calcDetails;
     }
 
@@ -123,7 +132,7 @@ public class MainController {
             Double.parseDouble(weightField.getCharacters().toString());
             Double.parseDouble(desiredWeightField.getCharacters().toString());
             Double.parseDouble(lossField.getCharacters().toString());
-        }catch (Exception ex){
+        } catch (Exception ex) {
             wrongInputAlert("Please check out your inputs.");
             return false;
         }
